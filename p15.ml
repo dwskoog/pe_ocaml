@@ -19,7 +19,7 @@ let denom_facts = (seq 1 20)
 let rec reduce_list_by n lst =
   match lst with
   | [] -> false,[]
-  | hd::tl when n || hd -> true,((hd/n)::tl)
+  | hd::tl when n // hd -> true,((hd/n)::tl)
   | hd::tl ->
       let did_reduce,new_tl = reduce_list_by n tl in
       if did_reduce then true,hd::new_tl else false,hd::tl

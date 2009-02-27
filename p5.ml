@@ -11,7 +11,7 @@
 
 open Numbers
 
-let reduce n m = if n || m then m / n else m
+let reduce n m = if n // m then m / n else m
 
 let rec sieve nums =
   match nums with

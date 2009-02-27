@@ -4,7 +4,7 @@ let odd n = n mod 2 = 1
 
 let divides p n = n mod p = 0
 
-let ( || ) p n = divides p n
+let ( // ) p n = divides p n
 
 let seq lbd ubd =
   let rec helper n ns = 
@@ -15,7 +15,7 @@ let is_py_triple a b c = a*a + b*b = c*c
 
 let tri_num n = (n*(n+1))/2
 
-let collatz_succ n = if 2 || n then n/2 else 3*n+1
+let collatz_succ n = if 2 // n then n/2 else 3*n+1
 
 let collatz_seq n =
   let rec helper n c_seq =

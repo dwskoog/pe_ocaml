@@ -37,12 +37,12 @@ open Numbers
 let divisors n =
   let rec helper x divs =
     if x = n then n::divs
-    else if x || n then helper (succ x) (x::divs)
+    else if x // n then helper (succ x) (x::divs)
     else helper (succ x) divs
   in helper 1 []
 
 let d_tri n =
-  let x,y = if 2 || n then (n/2),(n+1) else n,(n+1)/2 in
+  let x,y = if 2 // n then (n/2),(n+1) else n,(n+1)/2 in
   List.length(divisors x) * List.length(divisors y)
 
 let search_d_tri lbd =

@@ -1,7 +1,7 @@
 open Numbers
 
 let rec remove_all p n = 
-  if p || n then remove_all p (n/p)
+  if p // n then remove_all p (n/p)
   else n
 
 let prime_factors n =
@@ -30,14 +30,14 @@ let sieve n =
 let is_prime n =
   if n = 1 then false
   else if n < 4 then true
-  else if 2 || n then false
+  else if 2 // n then false
   else if n < 9 then true
-  else if 3 || n then false
+  else if 3 // n then false
   else
     let bd = truncate(sqrt(float n)) in
     let rec helper x =
       if x > bd then true
-      else if x || n then false
-      else if (x+2) || n then false
+      else if x // n then false
+      else if (x+2) // n then false
       else helper (x+6)
     in helper 5
