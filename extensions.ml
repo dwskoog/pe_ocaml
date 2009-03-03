@@ -30,12 +30,12 @@ module String =
     include String
 
     let explode str =
-      let rec len = String.length(str)
-      and helper i l =
-        if i < len then helper (i+1) ((str.[i])::l)
+      let len = String.length(str) in
+      let rec helper i l =
+        if i >= 0 then helper (i-1) ((str.[i])::l)
         else l
       in
-        List.rev(helper 0 [])
+      helper (len-1) []
 
     let int_of_digit c =
       match c with
@@ -49,4 +49,14 @@ module String =
       if len <= 1 then true
       else if s.[0] = s.[len - 1] then is_palindrome (String.sub s 1 (len-2))
       else false 
+
+    let slice str first last =
+      let len = last - first + 1 in
+      String.sub str first len
+
+    let strtok str sep offset =
+      let has_sep = String.contains_from str offset sep in
+      let index = if not has_sep then String.length str
+                  else String.index_from str offset sep in
+      (slice str offset (index-1)),(index+1)
   end
