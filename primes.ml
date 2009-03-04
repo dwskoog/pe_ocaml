@@ -1,4 +1,6 @@
-open Numbers
+let divides p n = n mod p = 0
+
+let ( // ) p n = divides p n
 
 let rec remove_all p n = 
   if p // n then remove_all p (n/p)
@@ -15,6 +17,11 @@ let prime_factors n =
   in break n 2 []
 
 let sieve n =
+  let seq lbd ubd =
+    let rec helper n ns = 
+      if n >= lbd then helper (n-1) (n::ns) 
+      else ns in 
+    helper ubd [] in
   let bd = truncate(sqrt(float n)) in
   let candidates n = seq 2 n in
   let retain n m = m mod n <> 0 in
@@ -41,3 +48,10 @@ let is_prime n =
       else if (x+2) // n then false
       else helper (x+6)
     in helper 5
+
+let multiplicity n p = 
+  let rec helper mult rem =
+    if p // rem then helper (mult+1) (rem/p)
+    else mult
+  in
+  helper 0 n
