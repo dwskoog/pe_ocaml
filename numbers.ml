@@ -70,3 +70,4 @@ let is_abundant n = n < (sum_of_proper_divisors n)
 
 let is_deficient n = n > (sum_of_proper_divisors n)
 
+let map_N_to_Z n = if 2 // n then -(n/2) else (n/2)+1

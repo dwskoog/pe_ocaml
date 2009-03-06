@@ -8,21 +8,17 @@ let max_option a b =
 module List =
   struct
     include List
-    let combine2 = List.combine
 
-    let rec combine3 alst blst clst =
-      match(alst, blst, clst) with
-      | ([],[],[]) -> []
-      | (a::atl, b::btl, c::ctl) -> (a,b,c)::(combine3 atl btl ctl)
-      | _ -> failwith "Even lists"
+    let cross alst blst =
+      let ecross a = rev(fold_left (fun x y -> (a,y)::x) [] blst) in
+      let rec helper arem prod =
+        match arem with
+        | [] -> prod
+        | hd::tl -> helper tl ((ecross hd )::prod)
+      in
+      rev(helper alst [])
 
-    let rec combine4 alst blst clst dlst =
-      match(alst, blst, clst, dlst) with
-      | ([],[],[], []) -> []
-      | (a::atl, b::btl, c::ctl, d::dtl) -> 
-          (a,b,c,d)::(combine4 atl btl ctl dtl)
-      | _ -> failwith "Even lists"
-
+    let ( |*| ) a b = cross a b
   end
 
 module String =

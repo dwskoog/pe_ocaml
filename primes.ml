@@ -35,7 +35,7 @@ let sieve n =
     helper (candidates n) []
 
 let is_prime n =
-  if n = 1 then false
+  if n <= 1 then false
   else if n < 4 then true
   else if 2 // n then false
   else if n < 9 then true
