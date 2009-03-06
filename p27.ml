@@ -43,7 +43,7 @@ let possible_as = List.map map_N_to_Z (seq 0 2000)
 
 let possible_functions = List.flatten (List.cross possible_as possible_bs)
 
-(* If (p a b) is prime-generating on 0<=n<=m then (p b a)(n-m) is
+(* If (p a b) is prime-generating on 0<=n<=m then (p a b)(n-m) is
  * prime-generating on 0<=n<=2m
  *)
 let transform a b m = (a-2*m),(m*m-a*m+b),2*m
