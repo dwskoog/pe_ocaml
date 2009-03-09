@@ -35,7 +35,7 @@ let collatz_stop n =
 
 let factorial n =
   let rec helper curr prod =
-    if curr = 1 then prod
+    if curr = 0 then prod
     else helper (pred curr) (curr*prod)
   in helper n 1
 
