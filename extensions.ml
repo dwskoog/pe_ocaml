@@ -19,6 +19,12 @@ module List =
       rev(helper alst [])
 
     let ( |*| ) a b = cross a b
+
+    let drop a b =
+      let f x = not (List.mem x b) in
+      List.filter f a
+
+    let ( /- ) a b = drop a b
   end
 
 module String =
@@ -55,4 +61,13 @@ module String =
       let index = if not has_sep then String.length str
                   else String.index_from str offset sep in
       (slice str offset (index-1)),(index+1)
+  end
+
+module Ratio =
+  struct
+    include Ratio
+
+    let create_helper cast num denom = div_ratio (cast num) (cast denom)
+    let create_ratio_int = create_helper ratio_of_int
+    let create_ratio_string = create_helper ratio_of_string
   end
