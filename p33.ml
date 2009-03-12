@@ -16,6 +16,7 @@
  * SOLUTION --
  *)
 
+open Non_std_extensions
 open Extensions
 open Numbers
 

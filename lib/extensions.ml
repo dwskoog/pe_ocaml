@@ -25,6 +25,33 @@ module List =
       List.filter f a
 
     let ( /- ) a b = drop a b
+
+    let list_of_int n =
+      let rec helper n lst =
+        if n < 10 then n::lst
+        else helper (n/10) ((n mod 10)::lst)
+      in if n >= 0 then helper n []
+      else (-1)::(helper (-n) [])
+
+    let int_of_list lst =
+      let rec helper sum lst =
+        match lst with
+        | [] -> sum
+        | hd::tl when hd >= 0 -> helper (10*sum+hd) tl
+        | _ -> failwith "Invalid representation"
+      in match lst with
+      | (-1)::tl -> - (helper 0 tl)
+      | _ -> helper 0 lst
+
+    let print_list p_el sep lst =
+      let rec helper lst =
+        match lst with
+        | [] -> ()
+        | hd::[] -> p_el hd;
+        | hd::tl -> p_el hd; sep (); helper tl
+      in print_char '['; helper lst; print_char ']'
+
+    let print_int_list = print_list print_int (fun () -> print_char ';')
   end
 
 module String =
@@ -61,13 +88,4 @@ module String =
       let index = if not has_sep then String.length str
                   else String.index_from str offset sep in
       (slice str offset (index-1)),(index+1)
-  end
-
-module Ratio =
-  struct
-    include Ratio
-
-    let create_helper cast num denom = div_ratio (cast num) (cast denom)
-    let create_ratio_int = create_helper ratio_of_int
-    let create_ratio_string = create_helper ratio_of_string
   end
