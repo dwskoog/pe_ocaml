@@ -26,6 +26,8 @@ module List =
 
     let ( /- ) a b = drop a b
 
+    let last lst = hd (rev lst)
+
     let list_of_int n =
       let rec helper n lst =
         if n < 10 then n::lst
